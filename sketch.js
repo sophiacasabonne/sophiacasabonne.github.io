@@ -1,13 +1,21 @@
 var diameter; 
 var Counter = 0;
+var Counter2 = 0;
+var bugs = [];
+
+
 H = 600;
 W = 600
 function setup() {
   angleMode(DEGREES);
   colorMode(HSB,80,100,100)
-  createCanvas(700, 500);
+  createCanvas(1200, 1200);
   frameRate(20)
   noStroke();
+  for (var i=0; i<50; i++) {
+    bugs.push(new Jitter());
+    
+  }
  
  
 }
@@ -17,22 +25,70 @@ function draw() {
   textSize(18);
   fill(0,100,100);
   noStroke();
+ 
+ fill(0, 0, 100);
+for (var i=0; i<bugs.length; i++) {
+    bugs[i].move();
+    bugs[i].display();
+    
+ 
+    
+  }
+  
+  
+  var H1Col = color(0, 50, 50);
+  var H2Col = color(1*80/6, 50, 50);
+  var H3Col = color(2*80/6, 50, 50);
+  var H4Col = color(3*80/6, 50, 50);
+  var H5Col = color(4*80/6, 50, 50);
+  var H6Col = color(5*80/6, 50, 50);
+ 
+  DrawHouse(H1Col,-150,150);
+  DrawHouse(H2Col,0,150);
+  DrawHouse(H3Col,150, 150);
+  DrawHouse(H4Col,300,150);
+  DrawHouse(H5Col,450,150);
+  DrawHouse(H6Col,600,150);
+
   
   //ChangeY();
   //ChangeX();
-  ChangeXY(width/2,height/2);
-  ChangeXY(height/2, width/2);
-  ChangeXY(width/4, height/2);
-  ChangeXY(height/4, width/2);
-  ChangeXY(width/2,height/2);
-  ChangeXY(height/2, width/2);
-  ChangeXY(width/4, height/2);
-  ChangeXY(height/4, width/2);
+  ChangeXY(Counter,200,200);
+  ChangeXY(Counter2,200,300);
+  ChangeXY(Counter,200,400);
+  ChangeXY(Counter2,200,100);
+  ChangeXY(Counter2,500,200);
+  ChangeXY(Counter,500,300);
+  ChangeXY(Counter2,500, 400);
+  ChangeXY(Counter,500,100);
+  ChangeXY(Counter,800,200);
+  ChangeXY(Counter2,800,300);
+  ChangeXY(Counter,800,400);
+  ChangeXY(Counter2,800,100);
+  
+
 
   
   Counter += 4;
+  Counter2 += 8;
 }
 
+//Jitter class
+function Jitter() {
+this.x = random(width);
+this.y = random(height);
+this.diameter = random(5,5);
+this.speed= 1;
+
+this.move = function() {
+  this.x +=random(-this.speed, this.speed);
+  this.y +=random(-this.speed, this.speed);
+};
+
+this.display=function() {
+  ellipse(this.x,this.y,this.diameter, this.diameter);
+}
+}
 
 // 1  let's talk about this function
 function SineWave(t,Mean,Amplitude,Frequency,Phase) {
@@ -79,31 +135,31 @@ function ChangeX() {
   fill(60,100,100),ellipse( x6, 7*YposStep, 20, 20);
 }
 
-function ChangeXY(CentX,CentY) {
-  var Amp= .6*width/2;
+function ChangeXY(myTime,CentX,CentY) {
+  var Amp= .6*width/5;
   var Angle = 0;
-  var x0 =  CentX+cos(Angle)*SineWave(Counter,0,Amp,1,0);
-  var y0 =  CentY+sin(Angle)*SineWave(Counter,0,Amp,1,0);
+  var x0 =  CentX+cos(Angle)*SineWave(myTime,0,Amp,1,0);
+  var y0 =  CentY+sin(Angle)*SineWave(myTime,0,Amp,1,0);
   
   Angle = 30;
-  var x1 =  CentX+cos(Angle)*SineWave(Counter,0,Amp,1,0);
-  var y1 =  CentY+sin(Angle)*SineWave(Counter,0,Amp,1,0);
+  var x1 =  CentX+cos(Angle)*SineWave(myTime,0,Amp,1,0);
+  var y1 =  CentY+sin(Angle)*SineWave(myTime,0,Amp,1,0);
   
   Angle = 60;
-  var x2 =  CentX+cos(Angle)*SineWave(Counter,0,Amp,1,0);
-  var y2 =  CentY+sin(Angle)*SineWave(Counter,0,Amp,1,0);
+  var x2 =  CentX+cos(Angle)*SineWave(myTime,0,Amp,1,0);
+  var y2 =  CentY+sin(Angle)*SineWave(myTime,0,Amp,1,0);
   
   Angle = 90;
-  var x3 =  CentX+cos(Angle)*SineWave(Counter,0,Amp,1,0);
-  var y3 =  CentY+sin(Angle)*SineWave(Counter,0,Amp,1,0);
+  var x3 =  CentX+cos(Angle)*SineWave(myTime,0,Amp,1,0);
+  var y3 =  CentY+sin(Angle)*SineWave(myTime,0,Amp,1,0);
   
   Angle = 120;
-  var x4 =  CentX+cos(Angle)*SineWave(Counter,0,Amp,1,0);
-  var y4 =  CentY+sin(Angle)*SineWave(Counter,0,Amp,1,0);
+  var x4 =  CentX+cos(Angle)*SineWave(myTime,0,Amp,1,0);
+  var y4 =  CentY+sin(Angle)*SineWave(myTime,0,Amp,1,0);
   
   Angle = 150;
-  var x5 =  CentX+cos(Angle)*SineWave(Counter,0,Amp,1,0);
-  var y5 =  CentY+sin(Angle)*SineWave(Counter,0,Amp,1,0);
+  var x5 =  CentX+cos(Angle)*SineWave(myTime,0,Amp,1,0);
+  var y5 =  CentY+sin(Angle)*SineWave(myTime,0,Amp,1,0);
   
 
   fill(0,100,100), ellipse(x0, y0, 20, 20);
@@ -153,4 +209,13 @@ function ChangeXY_phase(CentX,CentY) {
   
 }
    
-   
+   function DrawHouse(C1,OffsetX,OffsetY) {
+  fill(C1);  //house
+  rect(275+OffsetX, 500+OffsetY, 100, 100);
+
+  fill(0, 63, 66)  //roof
+  triangle(275+OffsetX, 500+OffsetY, 325+OffsetX, 400+OffsetY, 375+OffsetX, 500+OffsetY)
+
+  fill (0, 0, 0)  //window
+  rect(315+OffsetX, 575+OffsetY, 20, 30)
+}
